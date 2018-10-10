@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <!-- TODO
+    Use android:tint="@color/color_state_selector" in ImageViews corresponding to Icons
+    Use android:textColor="@color/color_state_selector" in TextViews acting as labels.
+    -->
+
+</androidx.constraintlayout.widget.ConstraintLayout>

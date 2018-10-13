@@ -10,30 +10,27 @@
     Use android:textColor="@color/color_state_selector" in TextViews acting as labels.
     -->
 
-    <EditText
-        android:id="@+id/editTextWeb"
-        android:layout_width="322dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:ems="10"
-        android:inputType="textWebEditText"
-        android:hint="(url)"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textViewWeb" />
-
     <ImageView
-        android:id="@+id/imageWeb"
-        android:layout_width="36dp"
-        android:layout_height="36dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="8dp"
-        android:tint="@color/color_state_selector"
+        android:id="@+id/imageViewProfile"
+        android:layout_width="368dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintDimensionRatio="w,16:9"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/editTextWeb"
-        app:layout_constraintTop_toBottomOf="@+id/textViewWeb"
-        app:srcCompat="@drawable/ic_web_24dp" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/cat1" />
+
+    <TextView
+        android:id="@+id/textViewProfileName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="8dp"
+        app:layout_constraintBottom_toBottomOf="@+id/imageViewProfile"
+        app:layout_constraintEnd_toEndOf="@+id/imageViewProfile"
+        android:padding="8dp"
+        android:background="@color/colorBlack"
+        android:textColor="@color/white"/>
 
     <TextView
         android:id="@+id/textViewName"
@@ -84,6 +81,19 @@
         app:layout_constraintTop_toBottomOf="@+id/textViewEmail" />
 
     <ImageView
+        android:id="@+id/imageWeb"
+        android:layout_width="36dp"
+        android:layout_height="36dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:tint="@color/color_state_selector"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/editTextWeb"
+        app:layout_constraintTop_toBottomOf="@+id/textViewWeb"
+        app:srcCompat="@drawable/ic_web_24dp" />
+
+    <ImageView
         android:id="@+id/imageEmail"
         android:layout_width="36dp"
         android:layout_height="36dp"
@@ -94,22 +104,10 @@
         app:layout_constraintTop_toBottomOf="@+id/textViewEmail"
         app:srcCompat="@drawable/ic_email_24dp" />
 
-    <EditText
-        android:id="@+id/editTextPhone"
-        android:layout_width="108dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:ems="10"
-        android:inputType="number"
-        android:hint="(phone)"
-        app:layout_constraintStart_toEndOf="@+id/imageEmail"
-        app:layout_constraintTop_toBottomOf="@+id/textViewEmail" />
-
     <TextView
         android:id="@+id/textViewPhoneNumber"
         android:layout_width="wrap_content"
-        android:layout_height="15dp"
+        android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
@@ -119,6 +117,18 @@
         app:layout_constraintHorizontal_bias="0.75"
         app:layout_constraintStart_toEndOf="@+id/textViewEmail"
         app:layout_constraintTop_toBottomOf="@+id/editTextName" />
+
+    <EditText
+        android:id="@+id/editTextPhone"
+        android:layout_width="108dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:ems="10"
+        android:hint="(phone)"
+        android:inputType="number"
+        app:layout_constraintStart_toEndOf="@+id/imageEmail"
+        app:layout_constraintTop_toBottomOf="@+id/textViewPhoneNumber" />
 
     <ImageView
         android:id="@+id/imagePhone"
@@ -130,7 +140,7 @@
         android:tint="@color/color_state_selector"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/editTextPhone"
-        app:layout_constraintTop_toBottomOf="@+id/textViewEmail"
+        app:layout_constraintTop_toBottomOf="@+id/textViewPhoneNumber"
         app:srcCompat="@drawable/ic_call_24dp" />
 
     <TextView
@@ -170,16 +180,6 @@
         app:layout_constraintTop_toBottomOf="@+id/textViewAdress"
         app:srcCompat="@drawable/ic_map_24dp" />
 
-    <ImageView
-        android:id="@+id/imageViewProfile"
-        android:layout_width="368dp"
-        android:layout_height="wrap_content"
-        app:layout_constraintDimensionRatio="w,16:9"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/cat1" />
-
     <TextView
         android:id="@+id/textViewWeb"
         android:layout_width="wrap_content"
@@ -191,17 +191,17 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/editTextAdress" />
 
-    <TextView
-        android:id="@+id/textViewProfileName"
-        android:layout_width="wrap_content"
+    <EditText
+        android:id="@+id/editTextWeb"
+        android:layout_width="322dp"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="8dp"
-        android:layout_marginBottom="8dp"
-        app:layout_constraintBottom_toBottomOf="@+id/imageViewProfile"
-        app:layout_constraintEnd_toEndOf="@+id/imageViewProfile"
-        android:padding="8dp"
-        android:background="@color/colorBlack"
-        android:textColor="@color/white"/>
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:ems="10"
+        android:inputType="textWebEditText"
+        android:hint="(url)"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textViewWeb" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

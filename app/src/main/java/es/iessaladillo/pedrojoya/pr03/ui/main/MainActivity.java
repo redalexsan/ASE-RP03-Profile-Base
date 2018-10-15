@@ -6,6 +6,7 @@ import android.graphics.Typeface;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -55,25 +56,26 @@ public class MainActivity extends AppCompatActivity {
         Avatar defaultProfile = Database.getInstance().getDefaultAvatar();
         profileImage.setImageResource(defaultProfile.getImageResId());
         profileName.setText(defaultProfile.getName());
+        profileImage.setTag(defaultProfile.getImageResId());
     }
 
     private void initViews() {
-        profileImage = ActivityCompat.requireViewById(this, R.id.imageViewProfile);
-        profileName = ActivityCompat.requireViewById(this,R.id.textViewProfileName);
-        textViewName = ActivityCompat.requireViewById(this,R.id.textViewName);
-        editTextName = ActivityCompat.requireViewById(this,R.id.editTextName);
-        textViewEmail = ActivityCompat.requireViewById(this,R.id.textViewEmail);
-        editTextEmail = ActivityCompat.requireViewById(this,R.id.editTextEmail);
-        textViewPhone = ActivityCompat.requireViewById(this,R.id.textViewPhoneNumber);
-        editTextPhone = ActivityCompat.requireViewById(this,R.id.editTextPhone);
-        textViewAdress = ActivityCompat.requireViewById(this,R.id.textViewAdress);
-        editTextAdress = ActivityCompat.requireViewById(this,R.id.editTextAdress);
-        textViewWeb = ActivityCompat.requireViewById(this, R.id.textViewWeb);
-        editTextWeb = ActivityCompat.requireViewById(this,R.id.editTextWeb);
-        emailImage = ActivityCompat.requireViewById(this,R.id.imageEmail);
-        phoneImage = ActivityCompat.requireViewById(this,R.id.imagePhone);
-        adressImage = ActivityCompat.requireViewById(this,R.id.imageAdress);
-        webImage = ActivityCompat.requireViewById(this,R.id.imageWeb);
+        profileImage = ActivityCompat.requireViewById(this, R.id.imgAvatar);
+        profileName = ActivityCompat.requireViewById(this,R.id.lblAvatar);
+        textViewName = ActivityCompat.requireViewById(this,R.id.lblName);
+        editTextName = ActivityCompat.requireViewById(this,R.id.txtName);
+        textViewEmail = ActivityCompat.requireViewById(this,R.id.lblEmail);
+        editTextEmail = ActivityCompat.requireViewById(this,R.id.txtEmail);
+        textViewPhone = ActivityCompat.requireViewById(this,R.id.lblPhonenumber);
+        editTextPhone = ActivityCompat.requireViewById(this,R.id.txtPhonenumber);
+        textViewAdress = ActivityCompat.requireViewById(this,R.id.lblAddress);
+        editTextAdress = ActivityCompat.requireViewById(this,R.id.txtAddress);
+        textViewWeb = ActivityCompat.requireViewById(this, R.id.lblWeb);
+        editTextWeb = ActivityCompat.requireViewById(this,R.id.txtWeb);
+        emailImage = ActivityCompat.requireViewById(this,R.id.imgEmail);
+        phoneImage = ActivityCompat.requireViewById(this,R.id.imgPhonenumber);
+        adressImage = ActivityCompat.requireViewById(this,R.id.imgAddress);
+        webImage = ActivityCompat.requireViewById(this,R.id.imgWeb);
 
         profileName.setOnClickListener(v -> newProfile());
         profileImage.setOnClickListener(v -> newProfile());
@@ -167,6 +169,11 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void afterTextChanged(Editable s) { }
         });
+
+        editTextWeb.setOnEditorActionListener((v, actionId, event) -> {
+            save();
+            return true;
+        });
     }
 
     private void newProfile(){
@@ -174,27 +181,31 @@ public class MainActivity extends AppCompatActivity {
 
         profileName.setText(randomAvatar.getName());
         profileImage.setImageResource(randomAvatar.getImageResId());
+        profileImage.setTag(randomAvatar.getImageResId());
     }
 
     private void request(EditText text, TextView textView, ImageView image){
         boolean resultado = true;
 
-        if(text.getId() == editTextEmail.getId())
-            if(!ValidationUtils.isValidEmail(String.valueOf(text.getText())))
+        if(text.getId() == editTextEmail.getId()) {
+            if (!ValidationUtils.isValidEmail(String.valueOf(text.getText())))
                 resultado = false;
-        else if(text.getId() == editTextPhone.getId())
-            if(!ValidationUtils.isValidPhone(String.valueOf(text.getText())))
+        }
+        else if(text.getId() == editTextPhone.getId()) {
+            if (!ValidationUtils.isValidPhone(String.valueOf(text.getText())))
                 resultado = false;
-        else if(text.getId() == editTextWeb.getId())
-            if(!ValidationUtils.isValidUrl(String.valueOf(text.getText())))
+        }
+        else if(text.getId() == editTextWeb.getId()) {
+            if (!ValidationUtils.isValidUrl(String.valueOf(text.getText())))
                 resultado = false;
+        }
         else
             if(String.valueOf(text.getText()).equals(""))
                 resultado = false;
 
 
         if(!resultado) {
-            text.setError(getString(R.string.invalid_message));
+            text.setError(getString(R.string.main_invalid_data));
             textView.setEnabled(false);
             image.setEnabled(false);
          }
@@ -208,7 +219,7 @@ public class MainActivity extends AppCompatActivity {
     private void request(EditText text, TextView textView){
 
         if(String.valueOf(text.getText()).equals("")) {
-            text.setError(getString(R.string.invalid_message));
+            text.setError(getString(R.string.main_invalid_data));
             textView.setEnabled(false);
         }
         else {
@@ -247,9 +258,9 @@ public class MainActivity extends AppCompatActivity {
     private void save() {
         ocultarTeclado(getCurrentFocus());
         if(validar())
-            Snackbar.make(getCurrentFocus(),"Student saved successfully",Snackbar.LENGTH_SHORT).show();
+            Snackbar.make(getCurrentFocus(),getString(R.string.main_saved_succesfully),Snackbar.LENGTH_SHORT).show();
         else
-            Snackbar.make(getCurrentFocus(),"Error saving student",Snackbar.LENGTH_SHORT).show();
+            Snackbar.make(getCurrentFocus(),getString(R.string.main_error_saving),Snackbar.LENGTH_SHORT).show();
     }
 
     @SuppressLint("ResourceType")
@@ -257,7 +268,7 @@ public class MainActivity extends AppCompatActivity {
         boolean resultado = true;
 
         if(String.valueOf(editTextName.getText()).equals("")) {
-            editTextName.setError(getString(R.string.invalid_message));
+            editTextName.setError(getString(R.string.main_invalid_data));
             textViewName.setEnabled(false);
             resultado = false;
         }
@@ -267,7 +278,7 @@ public class MainActivity extends AppCompatActivity {
         }
 
         if(String.valueOf(editTextAdress.getText()).equals("")) {
-            editTextAdress.setError(getString(R.string.invalid_message));
+            editTextAdress.setError(getString(R.string.main_invalid_data));
             textViewAdress.setEnabled(false);
             adressImage.setEnabled(false);
             resultado = false;
@@ -279,7 +290,7 @@ public class MainActivity extends AppCompatActivity {
         }
 
         if(!ValidationUtils.isValidPhone(String.valueOf(editTextPhone.getText()))) {
-            editTextPhone.setError(getString(R.string.invalid_message));
+            editTextPhone.setError(getString(R.string.main_invalid_data));
             textViewPhone.setEnabled(false);
             phoneImage.setEnabled(false);
             resultado = false;
@@ -290,7 +301,7 @@ public class MainActivity extends AppCompatActivity {
             phoneImage.setEnabled(true);
         }
         if( !ValidationUtils.isValidEmail(String.valueOf(editTextEmail.getText()))) {
-            editTextEmail.setError(getString(R.string.invalid_message));
+            editTextEmail.setError(getString(R.string.main_invalid_data));
             textViewEmail.setEnabled(false);
             emailImage.setEnabled(false);
             resultado = false;
@@ -302,7 +313,7 @@ public class MainActivity extends AppCompatActivity {
         }
 
         if(!ValidationUtils.isValidUrl(String.valueOf(editTextWeb.getText()))) {
-            editTextWeb.setError(getString(R.string.invalid_message));
+            editTextWeb.setError(getString(R.string.main_invalid_data));
             textViewWeb.setEnabled(false);
             webImage.setEnabled(false);
             resultado = false;

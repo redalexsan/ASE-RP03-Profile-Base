@@ -3,7 +3,8 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:id="@+id/ConstrainLayout">
 
     <!-- TODO
     Use android:tint="@color/color_state_selector" in ImageViews corresponding to Icons
@@ -12,9 +13,10 @@
 
     <ImageView
         android:id="@+id/imageViewProfile"
-        android:layout_width="368dp"
-        android:layout_height="wrap_content"
-        app:layout_constraintDimensionRatio="w,16:9"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:scaleType="centerCrop"
+        app:layout_constraintDimensionRatio="h,16:9"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
@@ -29,7 +31,7 @@
         app:layout_constraintBottom_toBottomOf="@+id/imageViewProfile"
         app:layout_constraintEnd_toEndOf="@+id/imageViewProfile"
         android:padding="8dp"
-        android:background="@color/colorBlack"
+        android:background="@color/colorAccent"
         android:textColor="@color/white"/>
 
     <TextView
@@ -37,7 +39,6 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
         android:text="Name"
         android:textColor="@color/color_state_selector"
         app:layout_constraintStart_toStartOf="parent"
@@ -48,11 +49,11 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
         android:ems="10"
-        android:inputType="textPersonName"
         android:hint="(name)"
+        android:inputType="textPersonName"
+        android:text=""
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textViewName" />
@@ -62,7 +63,6 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
         android:text="Email"
         android:textColor="@color/color_state_selector"
         app:layout_constraintStart_toStartOf="parent"
@@ -73,19 +73,19 @@
         android:layout_width="160dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
         android:ems="10"
-        android:inputType="textWebEmailAddress"
         android:hint="(email)"
+        android:inputType="textWebEmailAddress"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textViewEmail" />
+        app:layout_constraintTop_toBottomOf="@+id/textViewEmail"
+        android:nextFocusRight="@+id/editTextPhone"
+        android:nextFocusDown="@+id/editTextPhone"/>
 
     <ImageView
         android:id="@+id/imageWeb"
         android:layout_width="36dp"
         android:layout_height="36dp"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
         android:tint="@color/color_state_selector"
         app:layout_constraintEnd_toEndOf="parent"
@@ -98,7 +98,6 @@
         android:layout_width="36dp"
         android:layout_height="36dp"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
         android:tint="@color/color_state_selector"
         app:layout_constraintStart_toEndOf="@+id/editTextEmail"
         app:layout_constraintTop_toBottomOf="@+id/textViewEmail"
@@ -109,12 +108,11 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
         android:text="Phone number"
         android:textColor="@color/color_state_selector"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.75"
+        app:layout_constraintHorizontal_bias="0.73"
         app:layout_constraintStart_toEndOf="@+id/textViewEmail"
         app:layout_constraintTop_toBottomOf="@+id/editTextName" />
 
@@ -123,7 +121,6 @@
         android:layout_width="108dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
         android:ems="10"
         android:hint="(phone)"
         android:inputType="number"
@@ -135,7 +132,6 @@
         android:layout_width="36dp"
         android:layout_height="36dp"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
         android:tint="@color/color_state_selector"
         app:layout_constraintEnd_toEndOf="parent"
@@ -148,7 +144,6 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
         android:text="Adress"
         android:textColor="@color/color_state_selector"
         app:layout_constraintStart_toStartOf="parent"
@@ -159,11 +154,10 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
         android:ems="10"
-        android:inputType="textPersonName"
         android:hint="(adress)"
+        android:inputType="textPersonName"
         app:layout_constraintEnd_toStartOf="@+id/imageAdress"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
@@ -173,7 +167,6 @@
         android:id="@+id/imageAdress"
         android:layout_width="36dp"
         android:layout_height="36dp"
-        android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
         android:tint="@color/color_state_selector"
         app:layout_constraintEnd_toEndOf="parent"
@@ -196,10 +189,9 @@
         android:layout_width="322dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
         android:ems="10"
-        android:inputType="textWebEditText"
         android:hint="(url)"
+        android:inputType="textWebEditText"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textViewWeb" />
 

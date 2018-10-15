@@ -5,5 +5,6 @@
     <string name="main_save">Save</string>
     <string name="main_saved_succesfully">Student saved successfully</string>
     <string name="main_error_saving">Error saving student</string>
+    <string name="invalid_message">Invaldid data</string>
     <!-- END DO NOT TOUCH -->
 </resources>

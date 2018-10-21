@@ -6,11 +6,13 @@
     android:layout_height="match_parent"
     android:id="@+id/ConstrainLayout">
 
+    <!-- QUITA LOS COMENTARIOS TODO CUANDO LO HAYAS IMPLEMENTADO -->
     <!-- TODO
     Use android:tint="@color/color_state_selector" in ImageViews corresponding to Icons
     Use android:textColor="@color/color_state_selector" in TextViews acting as labels.
     -->
 
+    <!-- DEFINE SIEMPRE EL ATRIBUTO android:contentDescription EN LOS ImageView. -->
     <ImageView
         android:id="@+id/imgAvatar"
         android:layout_width="0dp"
@@ -44,6 +46,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imgAvatar" />
 
+    <!-- EL ATRIBUTO focusedByDefault NO VALE EN VERSIONES ANTERIORES A API 26 -->
     <EditText
         android:id="@+id/txtName"
         android:layout_width="0dp"
@@ -56,7 +59,9 @@
         android:inputType="textPersonName"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/lblName" />
+        app:layout_constraintTop_toBottomOf="@+id/lblName">
+        <requestFocus />
+    </EditText>
 
     <TextView
         android:id="@+id/lblEmail"
@@ -107,6 +112,7 @@
         app:layout_constraintTop_toBottomOf="@+id/lblEmail"
         app:srcCompat="@drawable/ic_email_24dp" />
 
+    <!-- NO USES LITERALES DE CADENA. DEFINE RECURSOS DE CADENA -->
     <TextView
         android:id="@+id/lblPhonenumber"
         android:layout_width="wrap_content"

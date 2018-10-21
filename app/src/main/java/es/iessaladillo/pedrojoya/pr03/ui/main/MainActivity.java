@@ -6,7 +6,6 @@ import android.graphics.Typeface;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
-import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -54,6 +53,8 @@ public class MainActivity extends AppCompatActivity {
 
     private void defaultProfile() {
         Avatar defaultProfile = Database.getInstance().getDefaultAvatar();
+        // ESTAS LÍNEAS LAS VUELVES A EMPLEAR EN EL MÉTODO newProfile(). DEFINE UN MÉTODO
+        // showAvatar(avatar)
         profileImage.setImageResource(defaultProfile.getImageResId());
         profileName.setText(defaultProfile.getName());
         profileImage.setTag(defaultProfile.getImageResId());
@@ -80,6 +81,7 @@ public class MainActivity extends AppCompatActivity {
         profileName.setOnClickListener(v -> newProfile());
         profileImage.setOnClickListener(v -> newProfile());
 
+        // TODOS LOS onFocusChange HACEN PRÁCTICAMENTE LO MISMO. HAZ UN MÉTODO.
         editTextName.setOnFocusChangeListener((v, hasFocus) -> {
             if(hasFocus)
                 textViewName.setTypeface(Typeface.DEFAULT_BOLD);
@@ -184,6 +186,8 @@ public class MainActivity extends AppCompatActivity {
         profileImage.setTag(randomAvatar.getImageResId());
     }
 
+    // EL MÉTODO request DEBERÍA RECIBIR UN BOOLEANO INDICATIVO DE SI EL CAMPO
+    // ES VÁLIDO O NO. TE AHORRARÍAS EL if else if
     private void request(EditText text, TextView textView, ImageView image){
         boolean resultado = true;
 
@@ -245,6 +249,7 @@ public class MainActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
+    // YO TE PROPORCIONA YA ESTE MÉTODO EN LA CLASE KeyboardUtils
     public void ocultarTeclado(View v){
         if(v != null){
             InputMethodManager imm = (InputMethodManager)getSystemService(Context.INPUT_METHOD_SERVICE);
@@ -257,6 +262,7 @@ public class MainActivity extends AppCompatActivity {
      **/
     private void save() {
         ocultarTeclado(getCurrentFocus());
+        // HAY QUE TENER CUIDADO CON getCurrentFocus() YA QUE PUEDE RETORNAR null.
         if(validar())
             Snackbar.make(getCurrentFocus(),getString(R.string.main_saved_succesfully),Snackbar.LENGTH_SHORT).show();
         else
@@ -266,6 +272,8 @@ public class MainActivity extends AppCompatActivity {
     @SuppressLint("ResourceType")
     public boolean validar(){
         boolean resultado = true;
+
+        // ESTE MISMO CÓDIGO YA LO TIENES EN request. ÚSALO.
 
         if(String.valueOf(editTextName.getText()).equals("")) {
             editTextName.setError(getString(R.string.main_invalid_data));
